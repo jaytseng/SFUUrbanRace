@@ -84,8 +84,8 @@ public class Login extends Activity implements OnClickListener{
             // TODO Auto-generated method stub
             // here Check for success tag
             int success;
-//            String username = input_username.getText().toString();
-//            String password = input_password.getText().toString();
+            String username = input_username.getText().toString();
+            String password = input_password.getText().toString();
 
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -117,11 +117,11 @@ public class Login extends Activity implements OnClickListener{
         protected void onPostExecute(String file_url) {
             pDialog.dismiss();
             if (file_url != null){
+                Intent i = new Intent(Login.this, Main.class);
+                startActivity(i);
                 Toast.makeText(Login.this, file_url, Toast.LENGTH_LONG).show();
             }
-            Intent i = new Intent(Login.this, Main.class);
-            finish();
-            startActivity(i);
+
         }
     }
 }
