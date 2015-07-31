@@ -21,10 +21,10 @@ public class Login extends Activity implements OnClickListener{
     private EditText input_username, input_password;
     private Button buttonLogin;
     // Progress Dialog
-   private ProgressDialog pDialog;
+    private ProgressDialog pDialog;
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL = "http://yourdomain.com/login.php";
+    private static final String LOGIN_URL = "http://urbanrace.comule.com/login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     @Override
@@ -54,7 +54,8 @@ public class Login extends Activity implements OnClickListener{
             super.onPreExecute();
             pDialog = new ProgressDialog(Login.this);
             pDialog.setMessage("Attempting for login...");
-            pDialog.setIndeterminate(false); pDialog.setCancelable(true);
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
             pDialog.show();
         }
 
@@ -78,7 +79,7 @@ public class Login extends Activity implements OnClickListener{
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     Log.d("Successfully Login!", json.toString());
-                    Intent ii = new Intent(Login.this,RaceListHome.class);
+                    Intent ii = new Intent(Login.this,Main.class);
 
                     // this finish() method is used to tell android os that we are done with current
                     // activity now! Moving to other activity
@@ -86,8 +87,8 @@ public class Login extends Activity implements OnClickListener{
                     finish();
                     return json.getString(TAG_MESSAGE);
 
-                    }else{
-                           return json.getString(TAG_MESSAGE);
+                }else{
+                    return json.getString(TAG_MESSAGE);
                 } }
             catch (JSONException e) {
                 e.printStackTrace();

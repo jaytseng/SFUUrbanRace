@@ -14,7 +14,8 @@ $password=$_POST["password"];
      die(json_encode($response));
       } else{ $response["success"] = 0;
        $response["message"] = "invalid username or password ";
-        die(json_encode($response)); } } else{ $response["success"] = 0;
+        die(json_encode($response));
+        } } else{ $response["success"] = 0;
          $response["message"] = " One or both of the fields are empty ";
-          die(json_encode($response)); } mysql_close(); ?>
-
+          die(json_encode($response));
+           } mysql_close(); ?>

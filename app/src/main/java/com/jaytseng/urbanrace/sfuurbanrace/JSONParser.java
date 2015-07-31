@@ -39,80 +39,80 @@ public class JSONParser {
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch(IOException e){
-        e.printStackTrace();
-    }
-    try {
-        // Create a BufferedReader
-        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                is, "iso-8859-1"), 8);
-        // Declaring string builder
-        StringBuilder str = new StringBuilder();
-        // string to store the JSON object.
-        String strLine = null;
-        // Building while we have string !equal null.
-        while ((strLine = reader.readLine()) != null) {
-            str.append(strLine + "\n");
+            e.printStackTrace();
+        }
+        try {
+            // Create a BufferedReader
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    is, "iso-8859-1"), 8);
+            // Declaring string builder
+            StringBuilder str = new StringBuilder();
+            // string to store the JSON object.
+            String strLine = null;
+            // Building while we have string !equal null.
+            while ((strLine = reader.readLine()) != null) {
+                str.append(strLine + "\n");
+            }
+
+            // Close inputstream.
+            is.close();
+            // string builder data conversion to string.
+            json = str.toString();
         }
 
-        // Close inputstream.
-        is.close();
-        // string builder data conversion to string.
-        json = str.toString();
+        catch(
+                Exception e
+                )
+
+        {
+            Log.e("Error", " something wrong with converting result " + e.toString());
+        }
+        // Try block used for pasrseing String to a json object
+        try
+
+        {
+            jsonObj = new JSONObject(json);
+        }
+
+        catch(
+                JSONException e
+                )
+
+        {
+            Log.e("json Parsering", "" + e.toString());
+        }
+        // Returning json Object.
+        return jsonObj;
     }
-
-    catch(
-    Exception e
-    )
-
-    {
-        Log.e("Error", " something wrong with converting result " + e.toString());
-    }
-    // Try block used for pasrseing String to a json object
-    try
-
-    {
-        jsonObj = new JSONObject(json);
-    }
-
-    catch(
-    JSONException e
-    )
-
-    {
-        Log.e("json Parsering", "" + e.toString());
-    }
-    // Returning json Object.
-    return jsonObj;
-}
 
     public JSONObject makeHttpRequest(String url, String method,
                                       List<NameValuePair> params) {
-                                       // Make HTTP request
-                                       try {
-                                       // checking request method
-                                       if(method == "POST"){
-                                       // now defaultHttpClient object
-                                       DefaultHttpClient httpClient = new DefaultHttpClient();
-                                           HttpPost httpPost = new HttpPost(url);
-                                           httpPost.setEntity(new UrlEncodedFormEntity(params));
-                                           HttpResponse httpResponse = httpClient.execute(httpPost);
-                                           HttpEntity httpEntity = httpResponse.getEntity();
-                                           is = httpEntity.getContent();
-                                       }else if(method == "GET"){
-                                       // request method is GET
-                                       DefaultHttpClient httpClient = new DefaultHttpClient();
-                                           String paramString = URLEncodedUtils.format(params, "utf-8");
-                                           url += "?" + paramString; HttpGet httpGet = new HttpGet(url);
-                                           HttpResponse httpResponse = httpClient.execute(httpGet);
-                                           HttpEntity httpEntity = httpResponse.getEntity();
-                                           is = httpEntity.getContent();
-                                       } } catch (UnsupportedEncodingException e) {
-                                           e.printStackTrace();
-                                       } catch (ClientProtocolException e) {
-                                           e.printStackTrace();
-                                       } catch (IOException e) {
-                                           e.printStackTrace();
-                                       } try { BufferedReader reader = new BufferedReader(new InputStreamReader( is, "iso-8859-1"), 8);
+        // Make HTTP request
+        try {
+            // checking request method
+            if(method == "POST"){
+                // now defaultHttpClient object
+                DefaultHttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost(url);
+                httpPost.setEntity(new UrlEncodedFormEntity(params));
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpEntity httpEntity = httpResponse.getEntity();
+                is = httpEntity.getContent();
+            }else if(method == "GET"){
+                // request method is GET
+                DefaultHttpClient httpClient = new DefaultHttpClient();
+                String paramString = URLEncodedUtils.format(params, "utf-8");
+                url += "?" + paramString; HttpGet httpGet = new HttpGet(url);
+                HttpResponse httpResponse = httpClient.execute(httpGet);
+                HttpEntity httpEntity = httpResponse.getEntity();
+                is = httpEntity.getContent();
+            } } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } try { BufferedReader reader = new BufferedReader(new InputStreamReader( is, "iso-8859-1"), 8);
             StringBuilder str = new StringBuilder();
             String strLine = null;
             while ((strLine = reader.readLine()) != null) { str.append(strLine + "\n");
