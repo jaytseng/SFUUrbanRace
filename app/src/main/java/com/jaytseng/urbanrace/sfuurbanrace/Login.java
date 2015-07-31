@@ -19,12 +19,12 @@ import android.widget.Toast;
 
 public class Login extends Activity implements OnClickListener{
     private EditText input_username, input_password;
-    private Button buttonLogin;
+    private Button buttonLogin, buttonRegister;
     // Progress Dialog
     private ProgressDialog pDialog;
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL = "http://urbanrace.comule.com/login.php";
+    private static final String LOGIN_URL = "http://mysql17.000webhost.com/login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     @Override
@@ -35,12 +35,26 @@ public class Login extends Activity implements OnClickListener{
         input_password = (EditText)findViewById(R.id.passwordlEditText);
         buttonLogin = (Button)findViewById(R.id.loginButton);
         buttonLogin.setOnClickListener(this);
+        buttonRegister = (Button)findViewById(R.id.registerButton);
+        buttonRegister.setOnClickListener(this);
+
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(pDialog!= null)
+            pDialog.dismiss();
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.loginButton:
-                new AttemptLogin().execute();
+                new AttemptLogin(input_username.getText().toString(),input_password.getText().toString()).execute();
+            case R.id.registerButton:
+                Intent i = new Intent(this, Register.class);
+                startActivity(i);
+                break;
             default:
                 break;
         }
@@ -49,6 +63,13 @@ public class Login extends Activity implements OnClickListener{
         /** *
          *  Before starting background thread Show Progress Dialog * */
         boolean failure = false;
+        String username;
+        String password;
+        int success;
+        public AttemptLogin(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
 
         @Override protected void onPreExecute() {
             super.onPreExecute();
@@ -63,15 +84,17 @@ public class Login extends Activity implements OnClickListener{
             // TODO Auto-generated method stub
             // here Check for success tag
             int success;
-            String username = input_username.getText().toString();
-            String password = input_password.getText().toString();
+//            String username = input_username.getText().toString();
+//            String password = input_password.getText().toString();
+
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("username", username));
                 params.add(new BasicNameValuePair("password", password));
 
-                Log.d("request!", "starting");
                 JSONObject json = jsonParser.makeHttpRequest( LOGIN_URL, "POST", params);
+
+                Log.d("request! starting", LOGIN_URL + params );
 
                 // checking log for json response
                 Log.d("Login attempt", json.toString());
@@ -79,15 +102,10 @@ public class Login extends Activity implements OnClickListener{
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     Log.d("Successfully Login!", json.toString());
-                    Intent ii = new Intent(Login.this,Main.class);
-
-                    // this finish() method is used to tell android os that we are done with current
-                    // activity now! Moving to other activity
-                    startActivity(ii);
-                    finish();
                     return json.getString(TAG_MESSAGE);
 
                 }else{
+                    Log.d("Login Failure!", json.getString(TAG_MESSAGE));
                     return json.getString(TAG_MESSAGE);
                 } }
             catch (JSONException e) {
@@ -96,11 +114,14 @@ public class Login extends Activity implements OnClickListener{
         } /**
          * Once the background process is done we need to Dismiss the progress dialog asap *
          * **/
-        protected void onPostExecute(String message) {
+        protected void onPostExecute(String file_url) {
             pDialog.dismiss();
-            if (message != null){
-                Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
+            if (file_url != null){
+                Toast.makeText(Login.this, file_url, Toast.LENGTH_LONG).show();
             }
+            Intent i = new Intent(Login.this, Main.class);
+            finish();
+            startActivity(i);
         }
     }
 }

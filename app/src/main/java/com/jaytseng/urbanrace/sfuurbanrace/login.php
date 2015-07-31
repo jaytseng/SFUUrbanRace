@@ -1,4 +1,4 @@
-<?php mysql_connect("urbanrace.comule.com","a2127723_admin","urbanrace2015");
+<?php mysql_connect("mysql17.000webhost.com","a2127723_admin","urbanrace2015");
 $db= mysql_select_db("a2127723_urpro");
 $password=$_POST["password"];
  $username=$_POST["username"];
