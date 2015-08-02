@@ -4,70 +4,83 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.jaytseng.urbanrace.sfuurbanrace.Login">
+    tools:context="com.jaytseng.urbanrace.sfuurbanrace.Login"
+    android:theme="@style/AppTheme"
+    android:background="#ff0ea4fe">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Username (10 characters):"
-            android:id="@+id/textView10"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
-
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:id="@+id/linearLayout"
+        android:background="@drawable/shape"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
         <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="282dp"
+            android:layout_height="0dp"
             android:id="@+id/usernamelEditText"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView10"
-            android:text="lottetfins" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Password (8 characters):"
-            android:id="@+id/textView11"
-            android:layout_alignTop="@+id/passwordlEditText"
-            android:layout_alignParentStart="true" />
+            android:text="lottetfins"
+            android:textColor="#ff222222"
+            android:textColorHighlight="#ff222222"
+            android:textColorHint="#ff8d817f"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:singleLine="true"
+            android:shadowColor="#ffa1959d" />
 
         <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="282dp"
+            android:layout_height="0dp"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordlEditText"
             android:layout_below="@+id/usernamelEditText"
             android:layout_alignParentStart="true"
-            android:text="password" />
+            android:text="password"
+            android:textColor="#ff222222"
+            android:textColorHighlight="#ff222222"
+            android:textColorHint="#ff8d817f"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:singleLine="true" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="New user? Register Now"
-                android:id="@+id/registerButton"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:id="@+id/loginButton"
-                android:layout_weight="0.52" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:id="@+id/registerButton"
+        android:layout_weight="0.00"
+        android:background="#ff0ea3fd"
+        android:layout_gravity="right"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/loginButton"
+        android:layout_alignStart="@+id/linearLayout" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/loginButton"
+        android:layout_weight="0.00"
+        android:background="#ff0ea3fd"
+        android:layout_gravity="right"
+        android:textSize="20dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignEnd="@+id/linearLayout" />
 
 </RelativeLayout>
