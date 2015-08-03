@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.jaytseng.urbanrace.sfuurbanrace.reg"
+    android:background="#ff0ea4fe">
+    android:background="#ff0ea4fe">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:id="@+id/linearLayout"
+        android:background="@drawable/shape"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/usernameEditText"
+            android:hint="USERNAME (10 CHARS)"
+            android:textColorHint="@android:color/darker_gray"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordEditText"
+            android:hint="PASSWORD (8 CHARS)"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/firstnameEditText"
+            android:hint="FIRST NAME"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lastnameEditText"
+            android:hint="LAST NAME"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sexEditText"
+            android:hint="SEX: F/M"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/yobEditText"
+            android:hint="YEAR OF BIRTH: YYYY"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/livinareagEditText"
+            android:hint="LIVING AREA"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:id="@+id/cancelButton"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:background="#ff0ea4fe" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:id="@+id/registerButton"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignEnd="@+id/linearLayout"
+        android:background="#ff0ea4fe" />
+
+
+</RelativeLayout>
