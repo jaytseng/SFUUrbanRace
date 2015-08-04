@@ -1,17 +1,44 @@
 package com.jaytseng.urbanrace.sfuurbanrace;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
-public class RaceListHome extends ActionBarActivity {
+public class RaceListHome extends ActionBarActivity implements View.OnClickListener{
+
+    Button compassButton, levelButton, gMapsButton, puzzleListButton, gameOneButton, gameTwoButton, gameThreeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_race_list_home);
+
+        //initializing buttons
+        compassButton = (Button)findViewById(R.id.compassButton);
+        compassButton.setOnClickListener(this);
+
+        levelButton = (Button)findViewById(R.id.levelButton);
+        levelButton.setOnClickListener(this);
+
+        gMapsButton = (Button)findViewById(R.id.gMapsButton);
+        gMapsButton.setOnClickListener(this);
+
+        puzzleListButton = (Button)findViewById(R.id.puzzleListButton);
+        puzzleListButton.setOnClickListener(this);
+
+        gameOneButton = (Button)findViewById(R.id.gameOneButton);
+        gameOneButton.setOnClickListener(this);
+
+        gameTwoButton = (Button)findViewById(R.id.gameTwoButton);
+        gameTwoButton.setOnClickListener(this);
+
+        gameThreeButton = (Button)findViewById(R.id.gameThreeButton);
+        gameThreeButton.setOnClickListener(this);
     }
 
     @Override
@@ -34,5 +61,38 @@ public class RaceListHome extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.compassButton:
+                intent.setClass(this, compass.class);
+                startActivity(intent);
+                break;
+            case R.id.levelButton:
+                intent.setClass(this, acceleroLevel.class);
+                startActivity(intent);
+                break;
+            case R.id.gMapsButton:
+                intent.setClass(this, gMaps.class);
+                startActivity(intent);
+                break;
+            case R.id.gameOneButton:
+                intent.setClass(this, Rules.class);
+                startActivity(intent);
+                break;
+            case R.id.gameTwoButton:
+                intent.setClass(this, levelTwo.class);
+                startActivity(intent);
+                break;
+            case R.id.gameThreeButton:
+                intent.setClass(this, raceList.class);
+                startActivity(intent);
+                break;
+        }
+
+
     }
 }
